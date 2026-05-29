@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luxe Spa & Massage | Professional Therapies</title>
+    <style>
+        /* Base Styles & Typography */
+        :root {
+            --primary: #2C3E50;
+            --secondary: #D4AF37; /* Gold accent */
+            --light-bg: #F9F9F9;
+            --text-main: #333333;
+            --text-light: #666666;
+            --white: #FFFFFF;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+        }
+
+        body {
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        a { text-decoration: none; color: inherit; }
+        
+        /* Navigation */
+        header {
+            background: var(--white);
+            padding: 20px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--primary);
+            letter-spacing: 1px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover { color: var(--secondary); }
+
+        .btn {
+            background-color: var(--primary);
+            color: var(--white);
+            padding: 12px 24px;
+            border-radius: 4px;
+            font-weight: bold;
+            transition: background 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover { background-color: #1a252f; }
+        .btn-gold { background-color: var(--secondary); }
+        .btn-gold:hover { background-color: #b5952f; }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(44, 62, 80, 0.7), rgba(44, 62, 80, 0.7)), url('https://cdn.thecoolist.com/wp-content/uploads/2025/10/Natural-Balance.jpg') center/cover;
+            height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--white);
+            padding: 0 20px;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Services Section */
+        .services {
+            padding: 80px 5%;
+            background: var(--light-bg);
+            text-align: center;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .section-subtitle {
+            color: var(--text-light);
+            margin-bottom: 50px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background: var(--white);
+            padding: 40px 20px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+        }
+
+        .card:hover { transform: translateY(-10px); }
+        
+        .card h3 { margin-bottom: 15px; color: var(--primary); }
+        .card p { color: var(--text-light); margin-bottom: 20px; font-size: 0.95rem; }
+
+        /* Trust Section */
+        .trust-banner {
+            background: var(--primary);
+            color: var(--white);
+            padding: 60px 5%;
+            text-align: center;
+        }
+
+        .trust-banner h2 { margin-bottom: 20px; }
+        .stars { color: var(--secondary); font-size: 24px; margin-bottom: 10px; }
+
+        /* Footer */
+        footer {
+            background: #111;
+            color: #ccc;
+            padding: 60px 5% 20px;
+            text-align: center;
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .nav-links { display: none; } /* Hide links on mobile for simplicity */
+            .hero-content h1 { font-size: 2.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="logo">LUXE SPA</div>
+        <nav class="nav-links">
+            <a href="#services">Treatments</a>
+            <a href="#about">About</a>
+            <a href="#locations">Locations</a>
+        </nav>
+        <a href="#book" class="btn btn-gold">Book Now</a>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Relax. Restore. Rejuvenate.</h1>
+            <p>Experience award-winning massage therapy tailored to your exact needs in our tranquil, modern clinics.</p>
+            <button class="btn btn-gold" style="font-size: 1.1rem; padding: 15px 30px;">View Treatments</button>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <h2 class="section-title">Our Expert Treatments</h2>
+        <p class="section-subtitle">Delivered by certified professionals</p>
+        
+        <div class="grid">
+            <div class="card">
+                <h3>Deep Tissue Massage</h3>
+                <p>Targets chronic tension in muscles that lie far below the surface of your body. Perfect for muscle pain and stiffness.</p>
+                <a href="#book" style="color: var(--secondary); font-weight: bold;">Book 60 Min - £75 →</a>
+            </div>
+            <div class="card">
+                <h3>Sports Massage</h3>
+                <p>Designed to help prevent and treat sports injuries, improve flexibility, and enhance athletic performance.</p>
+                <a href="#book" style="color: var(--secondary); font-weight: bold;">Book 60 Min - £80 →</a>
+            </div>
+            <div class="card">
+                <h3>Relaxation / Swedish</h3>
+                <p>A gentle, flowing massage style that promotes general relaxation, relieves tension, and improves circulation.</p>
+                <a href="#book" style="color: var(--secondary); font-weight: bold;">Book 60 Min - £65 →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trust / Reviews -->
+    <section class="trust-banner">
+        <div class="stars">★★★★★</div>
+        <h2>"The best massage I've ever had."</h2>
+        <p>Rated 4.9/5 from over 2,000+ happy clients on Google Reviews.</p>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>123 Wellness Street, London, UK | 020 7123 4567 | hello@luxespa.co.uk</p>
+        <p style="margin-top: 20px; font-size: 0.8rem;">&copy; 2026 Luxe Spa. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>

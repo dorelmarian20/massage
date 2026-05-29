@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hair & Beauty Salon | Maidenhead</title>
+    <style>
+        :root {
+            --primary: #3E5A4F;       /* Elegant Sage Green */
+            --secondary: #C8A27B;     /* Warm Luxury Sand */
+            --dark: #2A3631;
+            --light-bg: #F7F5F2;      /* Off-white background */
+            --text-main: #333333;
+            --white: #FFFFFF;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Playfair Display', 'Helvetica Neue', Arial, sans-serif;
+        }
+
+        body {
+            color: var(--text-main);
+            line-height: 1.6;
+            background-color: var(--white);
+        }
+
+        a { text-decoration: none; color: inherit; }
+
+        /* Top Bar Info */
+        .top-bar {
+            background-color: var(--dark);
+            color: var(--white);
+            padding: 8px 5%;
+            font-size: 0.9rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Navigation Header & Dropdown */
+        header {
+            background: var(--white);
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.03);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 22px;
+            font-weight: bold;
+            color: var(--primary);
+            letter-spacing: 2px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-item {
+            position: relative;
+        }
+
+        .nav-links a {
+            font-weight: 500;
+            color: var(--dark);
+            padding: 10px 0;
+            display: inline-block;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover { color: var(--secondary); }
+
+        /* Treatments Sub-Menu Dropdown Logic */
+        .dropdown:hover .submenu {
+            display: block;
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .submenu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: var(--white);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            min-width: 220px;
+            border-radius: 4px;
+            list-style: none;
+            padding: 10px 0;
+            transform: translateY(5px);
+        }
+
+        .submenu li a {
+            padding: 10px 20px;
+            display: block;
+            width: 100%;
+            box-sizing: border-box;
+            font-size: 0.95rem;
+        }
+
+        .submenu li a:hover {
+            background-color: var(--light-bg);
+            color: var(--primary);
+        }
+
+        .btn {
+            background-color: var(--primary);
+            color: var(--white);
+            padding: 12px 26px;
+            border-radius: 4px;
+            font-weight: bold;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover { background-color: var(--dark); }
+        .btn-accent { background-color: var(--secondary); }
+        .btn-accent:hover { background-color: #b38e68; }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(42, 54, 49, 0.6), rgba(42, 54, 49, 0.6)), url('http://purespadirect.com/cdn/shop/articles/spa-room-design-ideas-how-to-create-a-luxurious-and-relaxing-retreat_6140640502526909901_20250130.jpg?v=1742552113') center/cover;
+            height: 70vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--white);
+            padding: 0 20px;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            font-weight: 400;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Menu Section */
+        .menu-section {
+            padding: 80px 5%;
+            background: var(--light-bg);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            font-weight: 400;
+            margin-bottom: 10px;
+        }
+
+        .treatment-category {
+            background: var(--white);
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+            margin-bottom: 40px;
+            scroll-margin-top: 120px; /* Aligns page jump properly below sticky header */
+        }
+
+        .category-title {
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 25px;
+            border-bottom: 2px solid var(--light-bg);
+            padding-bottom: 10px;
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 20px 40px;
+        }
+
+        .menu-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px dashed #e0e0e0;
+        }
+
+        .item-info h4 {
+            font-size: 1.1rem;
+            color: var(--dark);
+            font-weight: 600;
+        }
+
+        .item-info span {
+            font-size: 0.85rem;
+            color: #777;
+        }
+
+        .item-price {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: var(--primary);
+        }
+
+        /* Booking Engine Style */
+        .booking-section {
+            padding: 80px 5%;
+            background: var(--white);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .booking-form {
+            background: var(--light-bg);
+            padding: 40px;
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .form-group label {
+            font-weight: bold;
+            color: var(--dark);
+        }
+
+        .form-group input, .form-group select {
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: #b3b3b3;
+            padding: 60px 5% 30px;
+            text-align: center;
+        }
+
+        footer h3 { color: var(--white); margin-bottom: 15px; }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            text-align: left;
+            max-width: 1100px;
+            margin: 0 auto 40px;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links, .top-bar { display: none; }
+            .hero-content h1 { font-size: 2.3rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Contact Info Top Bar -->
+    <div class="top-bar">
+        <div>📍 37 Wooton Way, Maidenhead, SL6 4QZ</div>
+        <div>📞 Call to Book: 07761 936592</div>
+    </div>
+
+    <!-- Header Navigation -->
+    <header>
+        <div class="logo">HAIR & BEAUTY</div>
+        <nav>
+            <ul class="nav-links">
+                <li class="nav-item dropdown">
+                    <a href="#treatments">Treatments ▼</a>
+                    <ul class="submenu">
+                        <li><a href="#massage">Massages</a></li>
+                        <li><a href="#waxing">Waxing</a></li>
+                        <li><a href="#facials">Facials</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item"><a href="#contact">Find Us</a></li>
+            </ul>
+        </nav>
+        <a href="#book" class="btn btn-accent">Schedule Booking</a>
+    </header>
+
+    <!-- Visual Hero -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Premium Hair & Beauty Therapy</h1>
+            <p>Revitalize your body and skin with expert treatment plans right here in Maidenhead.</p>
+            <a href="#book" class="btn btn-accent">Instant Booking System</a>
+        </div>
+    </section>
+
+    <!-- Treatments Menu -->
+    <section id="treatments" class="menu-section">
+        <div class="section-header">
+            <h2>Our Treatment Menu</h2>
+            <p>Premium care formulations for your wellness</p>
+        </div>
+
+        <!-- Massage Block -->
+        <div id="massage" class="treatment-category">
+            <h3 class="category-title">Holistic Massage Therapies</h3>
+            <div class="menu-grid">
+                <div class="menu-item">
+                    <div class="item-info"><h4>Indian Head Massage</h4><span>30 mins</span></div>
+                    <div class="item-price">£35</div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-info"><h4>Swedish Full Body Massage</h4><span>60 mins</span></div>
+                    <div class="item-price">£55</div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-info"><h4>Deep Tissue Massage</h4><span>60 mins</span></div>
+                    <div class="item-price">£65</div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-info"><h4>Hot Stone Massage</h4><span>60 mins</span></div>
+                    <div class="item-price">£60</div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-info"><h4>Contouring Massage</h4><span>60 mins</span></div>
+                    <div class="item-price">£65</div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-info"><h4>Pregnancy Massage</h4><span>60 mins</span></div>
+                    <div class="item-price">£60</div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-info"><h4>Seated Half Body Massage</h4><span>30 mins</span></div>
+                    <div class="item-price">£35</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Waxing Block -->
+        <div id="waxing" class="treatment-category">
+            <h3 class="category-title">Waxing (Hot Wax / Sugar Paste)</h3>
+            <div class="menu-grid">
+                <div class="menu-item">
+                    <div class="item-info"><h4>Half Leg</h4><span>Smooth finish</span></div>
+                    <div class="item-price">£20</div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-info"><h4>Full Leg</h4><span>Complete leg wax</span></div>
+                    <div class="item-price">£30</div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-info"><h4>Underarm</h4><span>Quick & clean</span></div>
+                    <div class="item-price">£12</div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-info"><h4>Bikini</h4><span>Gentle mapping</span></div>
+                    <div class="item-price">£25</div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-info"><h4>Full Leg + Bikini Combo</h4><span>Popular bundle</span></div>
+                    <div class="item-price">£45</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Facials Block -->
+        <div id="facials" class="treatment-category">
+            <h3 class="category-title">Advanced Facials</h3>
+            <div class="menu-grid">
+                <div class="menu-item">
+                    <div class="item-info"><h4>Express Facial</h4><span>Quick skin refresh</span></div>
+                    <div class="item-price">£30</div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-info"><h4>Premium Facial</h4><span>Deep hydration & massage</span></div>
+                    <div class="item-price">£50</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Smart Booking System -->
+    <section id="book" class="booking-section">
+        <div class="section-header">
+            <h2>Book Your Session</h2>
+            <p>Pick your service and instantly download a smart link file to register it to your calendar application.</p>
+        </div>
+
+        <form class="booking-form" onsubmit="generateCalendarEvent(event)">
+            <div class="form-group">
+                <label for="client-name">Your Full Name</label>
+                <input type="text" id="client-name" placeholder="Jane Doe" required>
+            </div>
+
+            <div class="form-group">
+                <label for="service-select">Choose Treatment</label>
+                <select id="service-select" required>
+                    <option value="" disabled selected>Select a treatment...</option>
+                    <optgroup label="Massages">
+                        <option value="Indian Head Massage (30m)" data-duration="30">Indian Head Massage - £35</option>
+                        <option value="Swedish Full Body Massage (60m)" data-duration="60">Swedish Full Body Massage - £55</option>
+                        <option value="Deep Tissue Massage (60m)" data-duration="60">Deep Tissue Massage - £65</option>
+                        <option value="Hot Stone Massage (60m)" data-duration="60">Hot Stone Massage - £60</option>
+                        <option value="Contouring Massage (60m)" data-duration="60">Contouring Massage - £65</option>
+                        <option value="Pregnancy Massage (60m)" data-duration="60">Pregnancy Massage - £60</option>
+                        <option value="Seated Half Body Massage (30m)" data-duration="30">Seated Half Body Massage - £35</option>
+                    </optgroup>
+                    <optgroup label="Waxing">
+                        <option value="Half Leg Wax" data-duration="30">Half Leg - £20</option>
+                        <option value="Full Leg Wax" data-duration="45">Full Leg - £30</option>
+                        <option value="Underarm Wax" data-duration="15">Underarm - £12</option>
+                        <option value="Bikini Wax" data-duration="30">Bikini - £25</option>
+                        <option value="Full Leg + Bikini Combo" data-duration="60">Full Leg + Bikini - £45</option>
+                    </optgroup>
+                    <optgroup label="Facials">
+                        <option value="Express Facial (30m)" data-duration="30">Express Facial - £30</option>
+                        <option value="Premium Facial (60m)" data-duration="60">Premium Facial - £50</option>
+                    </optgroup>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="book-date">Appointment Date</label>
+                <input type="date" id="book-date" required>
+            </div>
+
+            <div class="form-group">
+                <label for="book-time">Preferred Time</label>
+                <input type="time" id="book-time" required>
+            </div>
+
+            <button type="submit" class="btn btn-accent" style="margin-top: 10px;">Generate Calendar Event</button>
+        </form>
+    </section>
+
+    <!-- Footer Area -->
+    <footer id="contact">
+        <div class="footer-grid">
+            <div>
+                <h3>Location</h3>
+                <p>Hair and Beauty Salon</p>
+                <p>37 Wooton Way</p>
+                <p>Maidenhead</p>
+                <p>SL6 4QZ</p>
+            </div>
+            <div>
+                <h3>Contact & Booking</h3>
+                <p>Mobile: <strong>07761 936592</strong></p>
+                <p>Call or text anytime to modify an appt slot manually.</p>
+            </div>
+            <div>
+                <h3>Hours</h3>
+                <p>Monday - Saturday: 9:00 AM - 7:00 PM</p>
+                <p>Sunday: Closed</p>
+            </div>
+        </div>
+        <p style="border-top: 1px solid #3d4f46; padding-top: 20px; font-size: 0.85rem;">&copy; 2026 Hair & Beauty Maidenhead. Handcrafted Client Portal.</p>
+    </footer>
+
+    <!-- Smart iCal Generation Logic (No Server Required) -->
+    <script>
+        function generateCalendarEvent(event) {
+            event.preventDefault();
+
+            const name = document.getElementById('client-name').value;
+            const selectEl = document.getElementById('service-select');
+            const serviceText = selectEl.options[selectEl.selectedIndex].value;
+            const duration = parseInt(selectEl.options[selectEl.selectedIndex].getAttribute('data-duration')) || 60;
+            const dateVal = document.getElementById('book-date').value; // YYYY-MM-DD
+            const timeVal = document.getElementById('book-time').value; // HH:MM
+
+            if (!dateVal || !timeVal) return alert("Please pick a valid date and time.");
+
+            // Format date for iCalendar standard structure
+            const year = dateVal.substring(0, 4);
+            const month = dateVal.substring(5, 7);
+            const day = dateVal.substring(8, 10);
+            const hour = timeVal.substring(0, 2);
+            const minute = timeVal.substring(3, 5);
+
+            const startStr = `${year}${month}${day}T${hour}${minute}00`;
+            
+            // Calc end time roughly
+            let endHour = parseInt(hour);
+            let endMin = parseInt(minute) + duration;
+            if (endMin >= 60) {
+                endHour += Math.floor(endMin / 60);
+                endMin = endMin % 60;
+            }
+            const endHourStr = String(endHour).padStart(2, '0');
+            const endMinStr = String(endMin).padStart(2, '0');
+            const endStr = `${year}${month}${day}T${endHourStr}${endMinStr}00`;
+
+            // Build structural raw configuration for .ics
+            const icsContent = [
+                "BEGIN:VCALENDAR",
+                "VERSION:2.0",
+                "PRODID:-//Salon Booking Portal//EN",
+                "BEGIN:VEVENT",
+                `SUMMARY:Salon Booking: ${serviceText} - ${name}`,
+                `DESCRIPTION:Appointment for client: ${name}\\nService Selected: ${serviceText}\\nLocation: 37 Wooton Way, Maidenhead`,
+                `LOCATION:37 Wooton Way, Maidenhead, SL6 4QZ`,
+                `DTSTART:${startStr}`,
+                `DTEND:${endStr}`,
+                "END:VEVENT",
+                "END:VCALENDAR"
+            ].join("\r\n");
+
+            // Direct virtual asset downloading engine sequence
+            const blob = new Blob([icsContent], { type: 'text/calendar;charset=utf-8;' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.setAttribute('download', `appointment_${year}${month}${day}.ics`);
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+    </script>
+</body>
+</html>
